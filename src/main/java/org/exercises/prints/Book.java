@@ -1,5 +1,7 @@
 package org.exercises.prints;
 
+import org.exercises.prints.enums.PageSize;
+
 public class Book extends Print {
     public Book(String title, int pages, PageSize size) {
         super(title, pages, size);

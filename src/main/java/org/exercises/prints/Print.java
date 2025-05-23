@@ -1,14 +1,7 @@
 package org.exercises.prints;
 
+import org.exercises.prints.enums.PageSize;
 import org.exercises.prints.interfaces.IPrint;
-
-enum PageSize {
-    A5,
-    A4,
-    A3,
-    A2,
-    A1
-}
 
 public abstract class Print implements IPrint {
     protected String title;

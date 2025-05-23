@@ -1,12 +1,8 @@
 package org.exercises.prints;
 
+import org.exercises.prints.enums.PageSize;
+import org.exercises.prints.enums.PaperType;
 import org.exercises.prints.interfaces.IPaper;
-
-enum PaperType {
-    REGULAR,
-    GLOSSY,
-    NEWSPAPER
-}
 
 public class Paper implements IPaper {
     private final PaperType type;

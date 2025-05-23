@@ -8,7 +8,7 @@ enum PaperType {
     NEWSPAPER
 }
 
-class Paper implements IPaper {
+public class Paper implements IPaper {
     private final PaperType type;
     private final PageSize size;
     private static final double BASE_NEWSPAPER = 0.03;

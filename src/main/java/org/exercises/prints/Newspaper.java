@@ -1,6 +1,6 @@
 package org.exercises.prints;
 
-class Newspaper extends Print {
+public class Newspaper extends Print {
     public Newspaper(String title, int pages, PageSize size) {
         super(title, pages, size);
     }

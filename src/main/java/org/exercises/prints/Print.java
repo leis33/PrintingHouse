@@ -10,7 +10,7 @@ enum PageSize {
     A1
 }
 
-abstract class Print implements IPrint {
+public abstract class Print implements IPrint {
     protected String title;
     protected int pages;
     protected PageSize size;
@@ -22,7 +22,7 @@ abstract class Print implements IPrint {
         this.size = size;
     }
 
-    public int getTotalPages() {
+    public int getPages() {
         return pages;
     }
 

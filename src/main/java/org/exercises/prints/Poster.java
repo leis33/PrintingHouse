@@ -1,6 +1,6 @@
 package org.exercises.prints;
 
-class Poster extends Print {
+public class Poster extends Print {
     public Poster(String title, int pages, PageSize size) {
         super(title, pages, size);
     }

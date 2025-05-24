@@ -1,12 +1,13 @@
 package org.exercises.printing;
 
 import org.exercises.exceptions.ExceptionMessages;
-import org.exercises.exceptions.PrintException;
+import org.exercises.exceptions.PrintingException;
+import org.exercises.printing.interfaces.IPrintingMachine;
 import org.exercises.prints.Edition;
 
 import java.util.*;
 
-public class PrintingMachine {
+public class PrintingMachine implements IPrintingMachine {
     private final boolean supportsColor;
     private final int maxSheets;
     private final int pagesPerMinute;
@@ -29,9 +30,9 @@ public class PrintingMachine {
         }
     }
 
-    public void print(Edition edition, int copies, boolean isColored) throws PrintException {
+    public void print(Edition edition, int copies, boolean isColored) throws PrintingException {
         if (isColored && !supportsColor) {
-            throw new PrintException(ExceptionMessages.UNSUPPORTED_COLOR_PRINT);
+            throw new PrintingException(ExceptionMessages.UNSUPPORTED_COLOR_PRINT);
         }
 
         int pages = edition.getPages();
@@ -39,7 +40,7 @@ public class PrintingMachine {
 
         while (count < copies) {
             if (loadedSheets < pages) {
-                throw new PrintException(ExceptionMessages.INSUFFICIENT_PAPER);
+                throw new PrintingException(ExceptionMessages.INSUFFICIENT_PAPER);
             }
 
             loadedSheets -= pages;
@@ -52,15 +53,6 @@ public class PrintingMachine {
     public int getTotalCopiesFromEdition(Edition edition) {
         return printed.getOrDefault(edition, 0);
     }
-
-    /*public int getTotalPrintedPages() {
-        int sum = 0;
-        for (Map.Entry<Edition, Integer> entry : printed.entrySet()) {
-            sum += entry.getKey().getPages() * entry.getValue();
-        }
-
-        return sum;
-    }*/
 
     public double getTotalExpenses() {
         double sum = 0;

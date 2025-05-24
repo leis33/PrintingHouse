@@ -1,7 +1,8 @@
 package org.exercises.printing;
 
 import org.exercises.entities.Employee;
-import org.exercises.exceptions.PrintException;
+import org.exercises.exceptions.ExceptionMessages;
+import org.exercises.exceptions.PrintingException;
 import org.exercises.prints.Edition;
 
 import java.util.*;
@@ -12,16 +13,25 @@ public class PrintingHouse {
     private final double discountPercent;
     private final double costPercentPerPageSize;
     private final double additionalCostPerPage;
+    private final double revenueBonusThreshold;
+    private final double bonusSalaryPercent;
 
     private List<Employee> employees = new ArrayList<>();
     private List<PrintingMachine> machines = new ArrayList<>();
     private double totalRevenue = 0;
 
-    public PrintingHouse(double discountThreshold, double discountPercent, double additionalCostPerPage, double costPercentPerPageSize) {
+    public PrintingHouse(double discountThreshold,
+                         double discountPercent,
+                         double additionalCostPerPage,
+                         double costPercentPerPageSize,
+                         double revenueBonusThreshold,
+                         double bonusSalaryPercent) {
         this.discountThreshold = discountThreshold;
         this.discountPercent = discountPercent;
         this.additionalCostPerPage = additionalCostPerPage;
         this.costPercentPerPageSize = costPercentPerPageSize;
+        this.revenueBonusThreshold = revenueBonusThreshold;
+        this.bonusSalaryPercent = bonusSalaryPercent;
     }
 
     public double getRevenue() {
@@ -36,8 +46,15 @@ public class PrintingHouse {
         machines.add(machine);
     }
 
-    public void printEdition(Edition edition, int copies, PrintingMachine machine, boolean isColored) throws PrintException {
-        PrintingMachine machineCopy = machines.get(machines.indexOf(machine));
+    public void printEdition(Edition edition, int copies, PrintingMachine machine, boolean isColored) throws PrintingException {
+        int idx = machines.indexOf(machine);
+        if (idx == -1) {
+            throw new PrintingException(ExceptionMessages.MISSING_MACHINE);
+        }
+
+        PrintingMachine machineCopy = machines.get(idx);
+
+
         machineCopy.print(edition, copies, isColored);
 
         double price = edition.getPrice(additionalCostPerPage) * (1 + costPercentPerPageSize / 100.0);
@@ -48,7 +65,7 @@ public class PrintingHouse {
         totalRevenue += copies * price;
     }
 
-    public void saveToFile(String filePath) throws IOException {
+    public void saveRecordsToFile(String filePath) throws IOException {
         try (PrintWriter out = new PrintWriter(filePath)) {
             out.println("Total revenue: " + totalRevenue);
             out.println("Total salaries: " + getTotalSalaries());
@@ -62,16 +79,26 @@ public class PrintingHouse {
         }
     }
 
-    public void deserializeEmployees(String filePath) throws IOException, ClassNotFoundException {
+    @SuppressWarnings("unchecked")
+    public List<String> deserializeEmployeesAndGetNames(String filePath) throws IOException, ClassNotFoundException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filePath))) {
-            employees = (List<Employee>)in.readObject();
+            List<Employee> employeesCopy = (List<Employee>)in.readObject();
+
+            List<String> names = new ArrayList<>();
+            for (Employee employee : employeesCopy) {
+                names.add(employee.getName());
+            }
+
+            return names;
         }
     }
 
     private double getTotalSalaries() {
+        double bonus = totalRevenue > revenueBonusThreshold ? bonusSalaryPercent : 0;
+
         double sum = 0;
         for (Employee employee : employees) {
-            sum += employee.getSalary(totalRevenue);
+            sum += employee.getSalary(bonus);
         }
         return sum;
     }

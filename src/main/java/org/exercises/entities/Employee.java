@@ -13,5 +13,9 @@ public abstract class Employee implements Serializable, IEmployee {
         this.baseSalary = baseSalary;
     }
 
-    public abstract double getSalary(double revenue);
+    public String getName() {
+        return name;
+    };
+
+    public abstract double getSalary(double bonusPercent);
 }

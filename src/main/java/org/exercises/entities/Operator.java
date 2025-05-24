@@ -6,7 +6,7 @@ public class Operator extends Employee {
     }
 
     @Override
-    public double getSalary(double revenue) {
+    public double getSalary(double bonusPercent) {
         return baseSalary;
     }
 }

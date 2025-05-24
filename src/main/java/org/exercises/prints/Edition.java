@@ -1,18 +1,18 @@
 package org.exercises.prints;
 
-import org.exercises.prints.enums.PageSize;
 import org.exercises.prints.interfaces.IEdition;
 
 public abstract class Edition implements IEdition {
     protected String title;
     protected int pages;
-    protected PageSize size;
+    protected Paper paper;
+
     protected double price;
 
-    public Edition(String title, int pages, PageSize size) {
+    public Edition(String title, int pages, Paper paper) {
         this.title = title;
         this.pages = pages;
-        this.size = size;
+        this.paper = paper;
     }
 
     public int getPages() {
@@ -23,5 +23,9 @@ public abstract class Edition implements IEdition {
         return title;
     }
 
-    public abstract double getPrice();
+    public double getTypeBasePrice() {
+        return paper.getTypeBasePrice();
+    }
+
+    public abstract double getPrice(double additionalCost);
 }

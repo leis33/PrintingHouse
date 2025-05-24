@@ -1,14 +1,12 @@
 package org.exercises.prints;
 
-import org.exercises.prints.enums.PageSize;
-
 public class Book extends Edition {
-    public Book(String title, int pages, PageSize size) {
-        super(title, pages, size);
+    public Book(String title, int pages, Paper paper) {
+        super(title, pages, paper);
     }
 
     @Override
-    public double getPrice() {
-        return 5.0;
+    public double getPrice(double additionalCost) {
+        return pages * paper.getPrice(additionalCost);
     }
 }

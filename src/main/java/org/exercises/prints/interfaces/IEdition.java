@@ -1,5 +1,5 @@
 package org.exercises.prints.interfaces;
 
 public interface IEdition {
-    public double getPrice();
+    public double getPrice(double additionalCost);
 }

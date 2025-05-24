@@ -11,21 +11,28 @@ public class Paper implements IPaper {
 
     private final PaperType type;
     private final PageSize size;
-    private final double pricePercentagePerSize;
 
-    public Paper(PaperType type, PageSize size, double pricePercentagePerSize) {
+    public Paper(PaperType type, PageSize size) {
         this.type = type;
         this.size = size;
-        this.pricePercentagePerSize = pricePercentagePerSize;
     }
 
-    public double getPrice() {
+    public double getTypeBasePrice() {
+        return switch (type) {
+            case REGULAR -> Paper.BASE_REGULAR;
+            case GLOSSY -> Paper.BASE_GLOSSY;
+            case NEWSPAPER -> Paper.BASE_NEWSPAPER;
+        };
+    }
+
+    public double getPrice(double additionalCost) {
         double base = switch (type) {
             case REGULAR -> Paper.BASE_REGULAR;
             case GLOSSY -> Paper.BASE_GLOSSY;
             case NEWSPAPER -> Paper.BASE_NEWSPAPER;
         };
 
-        return base * (size.ordinal() + 1) * (1 + pricePercentagePerSize / 100);
+        base += additionalCost;
+        return base * (size.ordinal() + 1);
     }
 }

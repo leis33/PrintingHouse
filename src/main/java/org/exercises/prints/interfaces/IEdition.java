@@ -1,5 +1,5 @@
 package org.exercises.prints.interfaces;
 
-public interface IPrintEdition {
+public interface IEdition {
     public double getPrice();
 }

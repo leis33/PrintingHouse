@@ -1,15 +1,15 @@
 package org.exercises.prints;
 
 import org.exercises.prints.enums.PageSize;
-import org.exercises.prints.interfaces.IPrintEdition;
+import org.exercises.prints.interfaces.IEdition;
 
-public abstract class PrintEdition implements IPrintEdition {
+public abstract class Edition implements IEdition {
     protected String title;
     protected int pages;
     protected PageSize size;
     protected double price;
 
-    public PrintEdition(String title, int pages, PageSize size) {
+    public Edition(String title, int pages, PageSize size) {
         this.title = title;
         this.pages = pages;
         this.size = size;

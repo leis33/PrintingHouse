@@ -5,12 +5,12 @@ import org.exercises.prints.enums.PaperType;
 import org.exercises.prints.interfaces.IPaper;
 
 public class Paper implements IPaper {
-    private final PaperType type;
-    private final PageSize size;
     private static final double BASE_NEWSPAPER = 0.03;
     private static final double BASE_REGULAR = 0.05;
     private static final double BASE_GLOSSY = 0.10;
 
+    private final PaperType type;
+    private final PageSize size;
     private final double pricePercentagePerSize;
 
     public Paper(PaperType type, PageSize size, double pricePercentagePerSize) {

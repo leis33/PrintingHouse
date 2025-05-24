@@ -29,25 +29,44 @@ public class PrintingMachine {
         }
     }
 
-    public void print(Edition edition, boolean isColored) throws PrintException {
+    public void print(Edition edition, int copies, boolean isColored) throws PrintException {
         if (isColored && !supportsColor) {
             throw new PrintException(ExceptionMessages.UNSUPPORTED_COLOR_PRINT);
         }
 
         int pages = edition.getPages();
+        int count = 0;
 
-        if (loadedSheets < pages) {
-            throw new PrintException(ExceptionMessages.INSUFFICIENT_PAPER);
+        while (count < copies) {
+            if (loadedSheets < pages) {
+                throw new PrintException(ExceptionMessages.INSUFFICIENT_PAPER);
+            }
+
+            loadedSheets -= pages;
+            count++;
         }
 
-        loadedSheets -= pages;
-        printed.put(edition, printed.getOrDefault(edition, 0) + edition.getPages());
+        printed.put(edition, printed.getOrDefault(edition, 0) + count);
     }
 
-    public int getTotalPrintedPages() {
+    public int getTotalCopiesFromEdition(Edition edition) {
+        return printed.getOrDefault(edition, 0);
+    }
+
+    /*public int getTotalPrintedPages() {
         int sum = 0;
         for (Map.Entry<Edition, Integer> entry : printed.entrySet()) {
             sum += entry.getKey().getPages() * entry.getValue();
+        }
+
+        return sum;
+    }*/
+
+    public double getTotalExpenses() {
+        double sum = 0;
+        for (Map.Entry<Edition, Integer> entry : printed.entrySet()) {
+            Edition edition = entry.getKey();
+            sum += edition.getPages() * entry.getValue() * edition.getTypeBasePrice();
         }
 
         return sum;

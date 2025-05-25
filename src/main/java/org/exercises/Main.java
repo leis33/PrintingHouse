@@ -107,7 +107,15 @@ public class Main {
         house2.serializeEmployees("./employeesHouse2.txt");
         // ---- END ----
 
+        // ---- PRINT TO CONSOLE -----
+        System.out.println("Printing house 1");
+        house1.readRecordsFromFile("./recordsHouse1.txt");
+        System.out.println("\nPrinting house 1");
+        house2.readRecordsFromFile("./recordsHouse2.txt");
+
+        System.out.println("\nEmployees of Printing house 1");
         System.out.println(house1.deserializeEmployeesAndGetNames("./employeesHouse1.txt"));
+        System.out.println("\nEmployees of Printing house 2");
         System.out.println(house2.deserializeEmployeesAndGetNames("./employeesHouse2.txt"));
     }
 }

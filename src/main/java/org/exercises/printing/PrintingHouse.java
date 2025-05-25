@@ -53,12 +53,9 @@ public class PrintingHouse {
         }
 
         PrintingMachine machineCopy = machines.get(idx);
-
-
         machineCopy.print(edition, copies, isColored);
 
         double price = edition.getPrice(additionalCostPerPage) * (1 + costPercentPerPageSize / 100.0);
-
         if (machineCopy.getTotalCopiesFromEdition(edition) > discountThreshold) {
             price *= (1 - discountPercent / 100.0);
         }
@@ -72,6 +69,16 @@ public class PrintingHouse {
             out.println("Total page expenses: " + getTotalPageExpenses());
         }
     }
+
+    public void readRecordsFromFile(String filePath) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        }
+    }
+
 
     public void serializeEmployees(String filePath) throws IOException {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath))) {

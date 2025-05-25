@@ -1,7 +1,7 @@
 package org.exercises.printing.interfaces;
 
 import org.exercises.exceptions.PrintingException;
-import org.exercises.prints.Edition;
+import org.exercises.editions.Edition;
 
 public interface IPrintingMachine {
     public void loadPaper(int sheets);

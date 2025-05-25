@@ -1,4 +1,4 @@
-package org.exercises.prints.interfaces;
+package org.exercises.editions.interfaces;
 
 public interface IEdition {
     public double getPrice(double additionalCost);

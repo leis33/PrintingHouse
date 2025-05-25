@@ -1,7 +1,7 @@
-package org.exercises.prints;
+package org.exercises.editions;
 
-public class Book extends Edition {
-    public Book(String title, int pages, Paper paper) {
+public class Poster extends Edition {
+    public Poster(String title, int pages, Paper paper) {
         super(title, pages, paper);
     }
 

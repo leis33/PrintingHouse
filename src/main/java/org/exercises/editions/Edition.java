@@ -1,6 +1,6 @@
-package org.exercises.prints;
+package org.exercises.editions;
 
-import org.exercises.prints.interfaces.IEdition;
+import org.exercises.editions.interfaces.IEdition;
 
 public abstract class Edition implements IEdition {
     protected String title;

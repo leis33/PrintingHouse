@@ -1,4 +1,4 @@
-package org.exercises.prints;
+package org.exercises.editions;
 
 public class Newspaper extends Edition {
     public Newspaper(String title, int pages, Paper paper) {

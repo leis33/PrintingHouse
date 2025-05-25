@@ -5,12 +5,12 @@ import org.exercises.entities.Operator;
 import org.exercises.exceptions.PrintingException;
 import org.exercises.printing.PrintingHouse;
 import org.exercises.printing.PrintingMachine;
-import org.exercises.prints.Book;
-import org.exercises.prints.Newspaper;
-import org.exercises.prints.Paper;
-import org.exercises.prints.Poster;
-import org.exercises.prints.enums.PageSize;
-import org.exercises.prints.enums.PaperType;
+import org.exercises.editions.Book;
+import org.exercises.editions.Newspaper;
+import org.exercises.editions.Paper;
+import org.exercises.editions.Poster;
+import org.exercises.editions.enums.PageSize;
+import org.exercises.editions.enums.PaperType;
 
 import java.io.IOException;
 

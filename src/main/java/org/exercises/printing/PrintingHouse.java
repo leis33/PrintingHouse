@@ -3,7 +3,7 @@ package org.exercises.printing;
 import org.exercises.entities.Employee;
 import org.exercises.exceptions.ExceptionMessages;
 import org.exercises.exceptions.PrintingException;
-import org.exercises.prints.Edition;
+import org.exercises.editions.Edition;
 
 import java.util.*;
 import java.io.*;

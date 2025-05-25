@@ -1,4 +1,4 @@
-package org.exercises.prints.enums;
+package org.exercises.editions.enums;
 
 public enum PageSize {
     A5,

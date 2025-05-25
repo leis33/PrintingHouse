@@ -1,8 +1,8 @@
-package org.exercises.prints;
+package org.exercises.editions;
 
-import org.exercises.prints.enums.PageSize;
-import org.exercises.prints.enums.PaperType;
-import org.exercises.prints.interfaces.IPaper;
+import org.exercises.editions.enums.PageSize;
+import org.exercises.editions.enums.PaperType;
+import org.exercises.editions.interfaces.IPaper;
 
 public class Paper implements IPaper {
     private static final double BASE_NEWSPAPER = 0.03;

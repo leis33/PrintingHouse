@@ -11,7 +11,8 @@ public class PrintingMachine implements IPrintingMachine {
     private final boolean supportsColor;
     private final int maxSheets;
     private final int pagesPerMinute;
-    private int loadedSheets;
+    private int loadedSheets = 0;
+
 
     private Map<Edition, Integer> printed;
 
@@ -22,7 +23,27 @@ public class PrintingMachine implements IPrintingMachine {
         this.printed = new HashMap<>();
     }
 
-    public void loadPaper(int sheets) {
+    public boolean isSupportsColor() {
+        return supportsColor;
+    }
+
+    public int getMaxSheets() {
+        return maxSheets;
+    }
+
+    public int getPagesPerMinute() {
+        return pagesPerMinute;
+    }
+
+    public int getLoadedSheets() {
+        return loadedSheets;
+    }
+
+    public void loadPaper(int sheets) throws PrintingException {
+        if (sheets <= 0) {
+            throw new PrintingException(ExceptionMessages.INCORRECT_LOAD_PAPER_VALUE);
+        }
+
         if (sheets + loadedSheets > maxSheets) {
             loadedSheets = maxSheets;
         } else {

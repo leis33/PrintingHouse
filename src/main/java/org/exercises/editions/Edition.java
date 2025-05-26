@@ -1,6 +1,7 @@
 package org.exercises.editions;
 
 import org.exercises.editions.interfaces.IEdition;
+import org.exercises.exceptions.PrintingException;
 
 public abstract class Edition implements IEdition {
     protected String title;
@@ -27,5 +28,5 @@ public abstract class Edition implements IEdition {
         return paper.getTypeBasePrice();
     }
 
-    public abstract double getPrice(double additionalCost);
+    public abstract double getPrice(double additionalCost) throws PrintingException;
 }

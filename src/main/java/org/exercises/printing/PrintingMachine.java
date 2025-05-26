@@ -52,6 +52,10 @@ public class PrintingMachine implements IPrintingMachine {
     }
 
     public void print(Edition edition, int copies, boolean isColored) throws PrintingException {
+        if (copies <= 0) {
+            throw new PrintingException(ExceptionMessages.INCORRECT_COPIES_VALUE);
+        }
+
         if (isColored && !supportsColor) {
             throw new PrintingException(ExceptionMessages.UNSUPPORTED_COLOR_PRINT);
         }

@@ -47,6 +47,10 @@ public class PrintingHouse {
     }
 
     public void printEdition(Edition edition, int copies, PrintingMachine machine, boolean isColored) throws PrintingException {
+        if (copies <= 0) {
+            throw new PrintingException(ExceptionMessages.INCORRECT_COPIES_VALUE);
+        }
+
         int idx = machines.indexOf(machine);
         if (idx == -1) {
             throw new PrintingException(ExceptionMessages.MISSING_MACHINE);
@@ -62,7 +66,7 @@ public class PrintingHouse {
         totalRevenue += copies * price;
     }
 
-    public void saveRecordsToFile(String filePath) throws IOException {
+    public void saveRecordsToFile(String filePath) throws IOException, PrintingException {
         try (PrintWriter out = new PrintWriter(filePath)) {
             out.println("Total revenue: " + totalRevenue);
             out.println("Total salaries: " + getTotalSalaries());
@@ -100,7 +104,7 @@ public class PrintingHouse {
         }
     }
 
-    private double getTotalSalaries() {
+    private double getTotalSalaries() throws PrintingException {
         double bonus = totalRevenue > revenueBonusThreshold ? bonusSalaryPercent : 0;
 
         double sum = 0;

@@ -1,6 +1,7 @@
 package org.exercises.entities;
 
 import org.exercises.entities.interfaces.IEmployee;
+import org.exercises.exceptions.PrintingException;
 
 import java.io.*;
 
@@ -29,5 +30,5 @@ public abstract class Employee implements Serializable, IEmployee {
         this.baseSalary = baseSalary;
     }
 
-    public abstract double getSalary(double bonusPercent);
+    public abstract double getSalary(double bonusPercent) throws PrintingException;
 }

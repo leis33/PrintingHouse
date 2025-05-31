@@ -114,7 +114,7 @@ public class PrintingHouse {
         return sum;
     }
 
-    private double getTotalPageExpenses() {
+    private double getTotalPageExpenses() throws PrintingException {
         double sum = 0;
         for (PrintingMachine machine : machines) {
             sum += machine.getTotalExpenses();

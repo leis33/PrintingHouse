@@ -24,8 +24,8 @@ public abstract class Edition implements IEdition {
         return title;
     }
 
-    public double getTypeBasePrice() {
-        return paper.getTypeBasePrice();
+    public double getBasePrice() throws PrintingException {
+        return paper.getPrice(0);
     }
 
     public abstract double getPrice(double additionalCost) throws PrintingException;

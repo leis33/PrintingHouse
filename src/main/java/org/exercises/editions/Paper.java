@@ -7,9 +7,9 @@ import org.exercises.exceptions.ExceptionMessages;
 import org.exercises.exceptions.PrintingException;
 
 public class Paper implements IPaper {
-    private static final double BASE_NEWSPAPER = 0.03;
-    private static final double BASE_REGULAR = 0.05;
-    private static final double BASE_GLOSSY = 0.10;
+    public static final double BASE_NEWSPAPER = 0.03;
+    public static final double BASE_REGULAR = 0.05;
+    public static final double BASE_GLOSSY = 0.10;
 
     private final PaperType type;
     private final PageSize size;
@@ -17,14 +17,6 @@ public class Paper implements IPaper {
     public Paper(PaperType type, PageSize size) {
         this.type = type;
         this.size = size;
-    }
-
-    public double getTypeBasePrice() {
-        return switch (type) {
-            case REGULAR -> Paper.BASE_REGULAR;
-            case GLOSSY -> Paper.BASE_GLOSSY;
-            case NEWSPAPER -> Paper.BASE_NEWSPAPER;
-        };
     }
 
     public double getPrice(double additionalCost) throws PrintingException {

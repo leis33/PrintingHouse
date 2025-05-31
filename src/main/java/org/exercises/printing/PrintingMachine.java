@@ -23,7 +23,7 @@ public class PrintingMachine implements IPrintingMachine {
         this.printed = new HashMap<>();
     }
 
-    public boolean isSupportsColor() {
+    public boolean getSupportsColor() {
         return supportsColor;
     }
 
@@ -79,11 +79,11 @@ public class PrintingMachine implements IPrintingMachine {
         return printed.getOrDefault(edition, 0);
     }
 
-    public double getTotalExpenses() {
+    public double getTotalExpenses() throws PrintingException {
         double sum = 0;
         for (Map.Entry<Edition, Integer> entry : printed.entrySet()) {
             Edition edition = entry.getKey();
-            sum += edition.getPages() * entry.getValue() * edition.getTypeBasePrice();
+            sum += edition.getPages() * entry.getValue() * edition.getBasePrice();
         }
 
         return sum;

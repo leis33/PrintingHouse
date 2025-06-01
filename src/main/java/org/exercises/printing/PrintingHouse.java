@@ -5,6 +5,8 @@ import org.exercises.exceptions.ExceptionMessages;
 import org.exercises.exceptions.PrintingException;
 import org.exercises.editions.Edition;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.io.*;
 
@@ -35,7 +37,8 @@ public class PrintingHouse {
     }
 
     public double getRevenue() {
-        return totalRevenue;
+        BigDecimal rounded = BigDecimal.valueOf(totalRevenue).setScale(2, RoundingMode.HALF_UP);
+        return rounded.doubleValue();
     }
 
     public boolean hasEmployee(Employee employee) {
@@ -76,7 +79,7 @@ public class PrintingHouse {
 
     public void saveRecordsToFile(String filePath) throws IOException, PrintingException {
         try (PrintWriter out = new PrintWriter(filePath)) {
-            out.println("Total revenue: " + totalRevenue);
+            out.println("Total revenue: " + getRevenue());
             out.println("Total salaries: " + getTotalSalaries());
             out.println("Total page expenses: " + getTotalPageExpenses());
         }
@@ -119,7 +122,9 @@ public class PrintingHouse {
         for (Employee employee : employees) {
             sum += employee.getSalary(bonus);
         }
-        return sum;
+
+        BigDecimal rounded = BigDecimal.valueOf(sum).setScale(2, RoundingMode.HALF_UP);
+        return rounded.doubleValue();
     }
 
     public double getTotalPageExpenses() throws PrintingException {
@@ -127,6 +132,8 @@ public class PrintingHouse {
         for (PrintingMachine machine : machines) {
             sum += machine.getTotalExpenses();
         }
-        return sum;
+
+        BigDecimal rounded = BigDecimal.valueOf(sum).setScale(2, RoundingMode.HALF_UP);
+        return rounded.doubleValue();
     }
 }

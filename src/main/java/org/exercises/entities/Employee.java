@@ -18,10 +18,6 @@ public abstract class Employee implements Serializable, IEmployee {
         return name;
     };
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getBaseSalary() {
         return baseSalary;
     }

@@ -38,6 +38,14 @@ public class PrintingHouse {
         return totalRevenue;
     }
 
+    public boolean hasEmployee(Employee employee) {
+        return employees.contains(employee);
+    }
+
+    public boolean hasMachine(PrintingMachine machine) {
+        return machines.contains(machine);
+    }
+
     public void hire(Employee employee) {
         employees.add(employee);
     }
@@ -104,7 +112,7 @@ public class PrintingHouse {
         }
     }
 
-    private double getTotalSalaries() throws PrintingException {
+    public double getTotalSalaries() throws PrintingException {
         double bonus = totalRevenue > revenueBonusThreshold ? bonusSalaryPercent : 0;
 
         double sum = 0;
@@ -114,7 +122,7 @@ public class PrintingHouse {
         return sum;
     }
 
-    private double getTotalPageExpenses() throws PrintingException {
+    public double getTotalPageExpenses() throws PrintingException {
         double sum = 0;
         for (PrintingMachine machine : machines) {
             sum += machine.getTotalExpenses();

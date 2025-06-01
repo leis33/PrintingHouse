@@ -103,7 +103,7 @@ public class PrintingHouseTests {
     }
 
     @Test
-    void whenPrintingPastThreshold_thenReducePriceAndAddToRevenueWith() throws PrintingException {
+    void whenPrintingPastThreshold_thenReducePriceAndAddToRevenue() throws PrintingException {
         // when
         machine.loadPaper(30000);
         printingHouse.printEdition(edition, 51, machine, false);
